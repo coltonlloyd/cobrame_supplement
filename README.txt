@@ -60,7 +60,7 @@ ME-model) and those output from step 1. It will then output Figure 5.
 This will block the reactions synthesizing all 1678 genes in iJL1678b one-by-one.
 It will then plug in .1 for mu and optimize for growth in glucose aerobic in
 silico media. If the solution is infeasible then the gene is considered
-essential and vice versa. This will output a file into the simulation_output
+essential and vice versa. This will output a json file into the simulation_output
 directory. If the solver is not installed the output is already deposited in
 the output directory.
 
@@ -68,7 +68,7 @@ the output directory.
 data set (Monk_essentiality.csv from PMID: 29020004) to determine whether
 the genes contained in both iOL1650 (based iOL1650_essentiality.xlsx, the
 essentiality predictions from PMID: 24084808) and iJL1678b were correctly
-predicted in each of the models. It will summarize these results in csv
+predicted in each of the models. It will summarize these results in a csv
 spreadsheet.
 
 ************************** To create Figure S1 *****************************

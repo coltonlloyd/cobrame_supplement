@@ -21,7 +21,7 @@ out_loc = '%s/simulation_output' % here
 # deposited model in supplement
 try:
     me = load_json_me_model('%s/iJL1678b.json' % model_loc)
-except FileNotFoundError:
+except:
     me = load_json_me_model('%s/iJL1678b.json' % saved_model_loc)
 
 

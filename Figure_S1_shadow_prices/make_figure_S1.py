@@ -2,7 +2,7 @@ from __future__ import print_function, division, absolute_import
 
 from cycler import cycler
 from glob import glob
-import pickle
+import json
 from os.path import dirname, abspath
 
 from matplotlib import pyplot as plt
@@ -32,7 +32,6 @@ plt.rcParams['axes.prop_cycle'] = cycler(color=['#0099E6', '#F23814',
                                                 '#12255A'])
 
 here = dirname(abspath(__file__))
-
 if __name__ == '__main__':
     y = []
     x = []
@@ -40,12 +39,14 @@ if __name__ == '__main__':
     # Create DataFrame containing shadow prices of all metabolites for each
     # glucose uptake rate in glucose sweep
     df = pd.DataFrame()
-    for i in sorted(glob('%s/glucose_sweep/*' % here)):
-        with open(i, 'rb') as f:
-            sol = pickle.load(f)
-        y.append(sol.f)
+    for i in sorted(glob('%s/glucose_sweep/*_flux.json' % here)):
+        with open(i, 'r') as f:
+            x_dict = json.load(f)
+        with open(i.replace('_flux.json', '_dual.json'), 'r') as f:
+            y_dict = json.load(f)
+        y.append(x_dict['biomass_dilution'])
         x.append(float(i.split('/')[-1].split('_')[0]))
-        df_new = pd.DataFrame.from_dict(sol.y_dict, orient='index')
+        df_new = pd.DataFrame.from_dict(y_dict, orient='index')
         df_new.columns = [i.split('/')[-1].split('_')[0]]
         df = df.join(df_new, how='outer')
 

@@ -2,8 +2,8 @@
 
 from __future__ import print_function, division, absolute_import
 
-import pickle
 from os.path import abspath, dirname
+import json
 
 import ecolime
 from qminospy.me1 import ME_NLP1
@@ -20,7 +20,7 @@ out_loc = '%s/glucose_sweep' % here
 # deposited model in supplement
 try:
     me = load_json_me_model('%s/iJL1678b.json' % model_loc)
-except FileNotFoundError:
+except:
     me = load_json_me_model('%s/iJL1678b.json' % saved_model_loc)
 
 
@@ -44,9 +44,13 @@ def run_glucose_sweep():
         me.solution.f = me.solution.x_dict['biomass_dilution']
 
         # Save with leading 0 if necessary
-        out_file = '%06.3f_glucose_sol.pickle' % uptake
-        with open('%s/%s' % (out_loc, out_file), 'wb') as f:
-            pickle.dump(me.solution, f)
+        out_file = '%06.3f_glucose_flux.json' % uptake
+        with open('%s/%s' % (out_loc, out_file), 'w') as f:
+            json.dump(me.solution.x_dict, f)
+
+        out_dual_file = '%06.3f_glucose_dual.json' % uptake
+        with open('%s/%s' % (out_loc, out_dual_file), 'w') as f:
+            json.dump(me.solution.y_dict, f)
 
 
 if __name__ == '__main__':
