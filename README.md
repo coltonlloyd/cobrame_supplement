@@ -1,13 +1,14 @@
-This supplement contains all of the scripts needed to reproduce the main results
-of the manuscript.
+# COBRAme Supplement
+This supplement contains all of the scripts needed to reproduce the figures
+of "[COBRAme: A Computational Framework for Models of Metabolism and Gene Expression](https://www.biorxiv.org/content/early/2017/10/31/106559)".
 
-To create the figures presented, the following simulations were ran using:
+The accompanying simulations were ran using:
 
  - Intel Xeon 3.5 GHz processor with 8 cores and 32 gbs of RAM
- - The quadMINOS solver using the solvemepy (~4gb of RAM required)
+ - The quadMINOS solver using the solvemepy (~4gb of RAM required per simulation)
  - Python 3.6
 
- Dependency versions
+## Dependency versions
  - COBRApy v5.11.0
  - matplotlib v2.0.0
  - sympy v1.0.0
@@ -18,7 +19,7 @@ To create the figures presented, the following simulations were ran using:
  - solvemepy v1.0.1
 
 
-Note: Figure 4 and Table 3 are created using iJL1678b. If ecolime is installed, 
+**Note:** Figure 4 and Table 3 are created using iJL1678b. If ecolime is installed,
 run build_me_model.py in the ecolime repository. This will used the information 
 contained in this directory to reconstruct the iJL1678b model and output it as a
 JSON. If ecolime is not installed, the model is already deposited in this 
@@ -30,7 +31,7 @@ Figure 5 is created using a version of iOL1650 created using COBRAme. It is
 contained in this supplementary directory as COBRAme_iOL1650.json.
 
 
-*************************** To create Figure 4 *******************************
+## To create Figure 4
 1) If the quadMINOS solver and solvemepy is installed, run the run_qminos_simulation.py
 file. This will solve the iJL1678b ME-model for each decimal point precision from
 .1 to 1e-15 and track the time taken to solve. It will then use these growth rates
@@ -44,7 +45,7 @@ these files are deposited in already in the simulation_output folder.
 3) To create Figure S2, run make_figure_S2.py to plot the results
 from 1 for two reactions in addition to PGI, which was used in figure 4.
 
-*************************** To create Figure 5 ******************************
+## To create Figure 5
 1) If the quadMINOS solver and solvemepy is installed, run the run_simulation.py
 file. This will output the metabolic, transcription and translation fluxes
 from iOL1650b into the COBRAme_simulations folder. If the solver is not
@@ -55,7 +56,7 @@ deposited metabolic, transcription and translation fluxes in iOL1650_simulations
 (these simulations are already deposited and were ran using the previous
 ME-model) and those output from step 1. It will then output Figure 5.
 
-*************************** To create Table 3 *******************************
+## To create Table 3
 1) If the quadMINOs solver and solvemepy is installed, run essentiality.py.
 This will block the reactions synthesizing all 1678 genes in iJL1678b one-by-one.
 It will then plug in .1 for mu and optimize for growth in glucose aerobic in
@@ -71,7 +72,7 @@ essentiality predictions from PMID: 24084808) and iJL1678b were correctly
 predicted in each of the models. It will summarize these results in a csv
 spreadsheet.
 
-************************** To create Figure S1 *****************************
+## To create Figure S1
 1) If the quadMINOs solver and solvemepy is installed, run
 run_qminos_simulations.py. This will sweep through maximum glucose uptake
 rate values from -1 to -11 mmol/gDW/hr and optimize for growth rate with
