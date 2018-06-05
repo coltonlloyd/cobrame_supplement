@@ -13,8 +13,8 @@ To create the figures presented, the following simulations were ran using:
  - sympy v1.0.0
  - pandas v0.21.0
  - scipy v0.19.0
- - ecolime v0.0.7
- - cobrame v0.0.7
+ - ecolime v0.0.9
+ - cobrame v0.0.9
  - solvemepy v1.0.1
 
 
